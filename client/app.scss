@@ -1,0 +1,516 @@
+@import 'packages/foundation5-sass/foundation';
+
+html,
+body
+{
+	height: 100%;
+}
+
+/* timeline */
+#g-timeline {
+	position: relative;
+	width: 100vw;
+	height: 50vh;
+	border-bottom: 1px solid #999;
+	overflow: auto;
+	margin-bottom: 0;
+}
+
+/* dates */
+#g-dates {
+	position: absolute;
+	z-index: 1;
+	left: 12.5%;
+	top: 0;
+	width: 750.1vw;
+	margin: 0;
+	whites-space: nowrap;
+}
+.dates-month {
+	width: 750.1vw;
+	list-style: none inside;
+}
+.dates-month-title {
+	margin-top: 0;
+	margin-bottom: 0;
+	text-align: center;
+	height: 6.25vh;
+	line-height: 6.25vh;
+	font-size: 3.125vh;
+	color: #777;
+	font-weight: normal;
+	border-left: 1px solid #bbb;
+}
+.dates-days {
+	margin: 0;
+	list-style: none inside;
+	font-size: 0;
+	height: 43.75vh;
+	border-top: 1px solid #bbb;
+	border-left: 1px solid #bbb;
+}
+.dates-day {
+	display: inline-block;
+	font-size: 1rem;
+	width: 25vw;
+	height: 56.25vh;
+	border-right: 1px solid #bbb;
+	background-image: url('/light.png'), url('/light.png'), url('/light.png');
+	background-position: 25% top, 50% top, 75% top;
+	background-repeat: repeat-y, repeat-y, repeat-y;
+}
+.dates-day-title {
+	display: block;
+	background: #fff;
+	text-align: center;
+	line-height: 6.25vh;
+	font-size: 3.125vh;
+	margin-top: 0;
+	margin-bottom: 0;
+	color: #bbb;
+	font-weight: normal;
+	border-bottom: 1px solid #bbb;
+}
+
+/* resources */
+#g-resources {
+	position: absolute;
+	z-index: 3;
+	left: 0;
+	top: 12.5vh;
+	width: 100%;
+	height: 37.5vh;
+	margin-bottom: 0;
+}
+.resource-name,
+.resource-timeline
+{
+	border-top: 1px solid #bbb;
+}
+
+/* resource-name */
+.resource-name {
+	position: absolute;
+	z-index: 4;
+	display: table;
+	width: 12.5vw;
+	height: 12.5vh;
+	margin-bottom: 0;
+	background: #fff;
+	/*box-shadow: .125rem 0 .125rem rgba(0,0,0,.125);*/
+}
+.resource-name:nth-child(1) {
+	top: .1vh;
+}
+.resource-name:nth-child(3) {
+	top: 12.5vh;
+}
+.resource-name:nth-child(5) {
+	top: 25vh;
+}
+.resource-name:nth-child(7) {
+	top: 37.5vh;
+}
+.resource-name:nth-child(9) {
+	top: 50vh;
+}
+.resource-name > a {
+	display: table-cell;
+	height: 100%;
+	vertical-align: middle;
+	text-align: center;
+}
+.resource-timeline {
+	position: relative;
+	z-index: 2;
+	margin-left: 12.5vw;
+	height: 12.5vh;
+	margin-bottom: 0;
+	border-left: 1px solid #bbb;
+}
+.resource-timeline:nth-child(2) {
+	border-top: none;
+}
+.resource-tasks {
+	height: 100%;
+	padding-top: 3.125vh;
+	margin-bottom: 0;
+	font-size: 0;
+	margin-left: 0;
+	white-space: nowrap;
+}
+
+/* task */
+.resource-task {
+	display: inline-block;
+	vertical-align: middle;
+	height: 6.25vh;
+	background: #ccc;
+	border-right: 1px solid #fff;
+	text-align: center;
+	font-size: .88889rem;
+	color: #fff;
+}
+.resource-task > a {
+	display: block;
+	color: #fff;
+	line-height: 6.25vh;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.resource-task.size-1 {
+	width: 6.25vw;
+}
+.resource-task.size-2 {
+	width: 12.5vw;
+}
+.resource-task.size-3 {
+	width: 18.75vw;
+}
+.resource-task.size-4 {
+	width: 25vw;
+}
+.resource-task.size-5 {
+	width: 31.25vw;
+}
+.resource-task.size-6 {
+	width: 37.5vw;
+}
+.resource-task.size-7 {
+	width: 43.75vw;
+}
+.resource-task.size-8 {
+	width: 50vw;
+}
+.resource-task.size-9 {
+	width: 56.25vw;
+}
+.resource-task.size-10 {
+	width: 62.5vw;
+}
+.resource-task.size-11 {
+	width: 68.75vw;
+}
+.resource-task.size-12 {
+	width: 75vw;
+}
+.resource-task.size-13 {
+	width: 81.25vw;
+}
+.resource-task.size-14 {
+	width: 87.5vw;
+}
+.resource-task.size-15 {
+	width: 93.75vw;
+}
+.resource-task.size-16 {
+	width: 100vw;
+}
+.resource-task:nth-child(1) {
+	background: #0e90d2;
+}
+.resource-task:nth-child(2) {
+	background: #8058a5;
+}
+.resource-task:nth-child(3) {
+	background: #5eb95e;
+}
+.resource-task:nth-child(4) {
+	background: #dd514c;
+}
+.resource-task:nth-child(5) {
+	background: #f37b1d;
+}
+.resource-task:nth-child(6) {
+	background: #fad232;
+}
+
+.tooltip {
+	margin-top: -.5rem;
+	margin-left: .5rem;
+	background-color: rgba(0,0,0,.75);
+	font-size: .88889rem;
+	font-weight: normal;
+}
+.tooltip.tip-top > .nub {
+	border-color: rgba(0,0,0,.75) transparent transparent transparent;
+}
+
+/* projects */
+#g-projects {
+	float: left;
+	width: 20%;
+	height: 50%;
+}
+#g-filters,
+#g-tasks,
+#g-projects
+{
+	display: none;
+}
+
+/* {
+	padding: 0;
+	margin: 0;
+}
+
+ul {
+	project-style: none;
+}
+
+html, body {
+	height: 100%;
+}
+
+body {
+	font-size: 16px;
+	line-height: 1.5;
+	background: #dddddd;
+	color: #333333;
+}
+
+body, input {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+input {
+	font-size: 100%;
+}
+
+a, a:visited, a:active {
+	color: #258;
+}
+
+h3 {
+	font-weight: bold;
+	text-decoration: underline;
+	font-size: 120%;
+	padding: 8px 6px;
+	text-align: center;
+}
+
+#g-filters, #g-tasks, #g-projects, #bottom-pane {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	overflow: hidden;
+}
+
+#g-filters {
+	left: 200px;
+	height: 44px;
+	bottom: auto;
+	background: #bbb;
+	border-bottom: 1px solid #bbb;
+}
+
+#help {
+	padding: 8px;
+}
+
+#g-tasks {
+	top: 45px;
+	bottom: 0;
+	left: 220px;
+	overflow: auto;
+}
+
+#g-projects {
+	width: 200px;
+	right: auto;
+	overflow: auto;
+	background: #ddd;
+	border-right: 1px solid #bbb;
+	background: #bbb;
+}
+
+.tag {
+	cursor: pointer;
+	float: left;
+	margin: 5px;
+	padding: 2px 7px;
+	font-size: 80%;
+	font-weight: bold;
+	background: #bbb;
+	color: #fff;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+
+	opacity: 1;
+	transition: opacity 0.3s linear;
+	-moz-transition: opacity 0.3s linear;
+	-webkit-transition: opacity 0.3s linear;
+	-o-transition: opacity 0.3s linear;
+
+	position: relative;
+}
+
+#filters .label {
+	float: left;
+	margin-top: 9px;
+	margin-left: 12px;
+	margin-right: 8px;
+}
+
+#filters .tag {
+	margin-top: 10px;
+	border: 1px solid #777;
+}
+
+#filters .selected {
+	background: #69d;
+}
+
+#filters .count {
+	font-weight: normal;
+	padding-left: 2px;
+}
+
+#projects .project {
+	padding: 3px 6px;
+}
+
+#projects .selected {
+	padding: 2px 6px;
+	background: #9be;
+	font-weight: bold;
+}
+
+#projects .project-name {
+	cursor: pointer;
+	color: black;
+	text-decoration: none;
+}
+
+#createProject {
+	padding: 3px 6px;
+	margin-top: 5px;
+}
+
+#createProject input {
+	width: 180px;
+}
+
+#new-task-box {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 60px;
+	margin-right: 20px;
+	font-size: 160%;
+	position: relative;
+	height: 40px;
+}
+
+#new-task {
+	 position: absolute;
+	 width: 100%;
+}
+
+#items-view {
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+#item-project .task {
+	display: block;
+	height: 50px;
+	position: relative;
+	overflow: hidden;
+	border-top: 1px solid #bbb;
+}
+
+#item-project .task .destroy {
+	cursor: pointer;
+	position: absolute;
+	left: 5px;
+	top: 15px;
+	height: 20px;
+	width: 20px;
+}
+
+#item-project .task .display, #item-project .task .edit {
+	margin-left: 30px;
+	height: 100%;
+	width: auto;
+	float: left;
+	padding-top: 18px;
+	line-height: 1;
+}
+
+#task-input {
+	width: 300px;
+	position: relative;
+	top: -3px;
+}
+
+#item-project .done .task-text {
+	text-decoration: line-through;
+	color: #bbb;
+}
+
+#item-project .task:hover .destroy {
+	background: url('/destroy.png') no-repeat 0 0;
+}
+
+#item-project .task .destroy:hover {
+	background-position: 0 -20px;
+}
+
+#item-project .task .item-tags {
+	overflow: auto;
+	float: right;
+	margin-right: 8px;
+}
+
+#item-project .task .item-tags .tag {
+	margin-top: 15px;
+}
+
+#item-project .task .item-tags .removable_tag {
+	padding-right: 22px;
+}
+
+#item-project .task .item-tags .tag .remove {
+	position: absolute;
+	top: 0;
+	right: 4px;
+	bottom: 0;
+	width: 16px;
+	background: url('/close_16.png') no-repeat 0 center;
+}
+
+#item-project .task .item-tags .tag .remove:hover {
+	background-position: -16px center;
+}
+
+#item-project .task .item-tags div.addtag {
+	background: none;
+	color: #333;
+	border: 1px dashed #bbb;
+}
+
+#item-project .task .check {
+	float: left;
+	width: 25px;
+}
+
+#item-project .task .task-text {
+	float: left;
+	margin-left: 10px;
+	font-size: 100%;
+}
+
+#item-project .task .edit input {
+	margin-left: 35px;
+}
+
+#edittag-input {
+	width: 80px;
+}
+*/

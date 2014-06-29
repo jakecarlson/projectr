@@ -1,0 +1,42 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "router": {},
+      "foundation5-sass": {},
+      "jquery-ui-sortable": {}
+    },
+    "packages": {
+      "router": {
+        "git": "https://github.com/tmeasday/meteor-router.git",
+        "tag": "v0.6.1",
+        "commit": "8ec75fec7affdefc787d19f23b36fd6d1d44ef04"
+      },
+      "foundation5-sass": {
+        "git": "https://github.com/lgollut/meteor-foundation5-sass.git",
+        "tag": "v0.0.13",
+        "commit": "10fed6a3c7edbbce6bd234ed41ca2b23ba4cf1cf"
+      },
+      "jquery-ui-sortable": {
+        "git": "https://github.com/rgm/meteor-jquery-ui-sortable.git",
+        "tag": "v1.10.3",
+        "commit": "4423bd4b28cd81df91400a6bcb2a3d82e72894dc"
+      },
+      "page-js-ie-support": {
+        "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",
+        "tag": "v1.3.5",
+        "commit": "b99ed8380aefd10b2afc8f18d9eed4dd0d8ea9cb"
+      },
+      "HTML5-History-API": {
+        "git": "https://github.com/tmeasday/meteor-HTML5-History-API.git",
+        "tag": "v4.1.2",
+        "commit": "b5fca79f9ae8936e5f748a04f475295f4fa1cc7a"
+      },
+      "scss": {
+        "git": "https://github.com/fourseven/meteor-scss.git",
+        "tag": "v0.9.3",
+        "commit": "185f3b2787fb85e653f7b7bf603d1493ed14943d"
+      }
+    }
+  }
+}
