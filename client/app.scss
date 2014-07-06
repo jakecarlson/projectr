@@ -205,10 +205,14 @@ body
 	vertical-align: middle;
 	height: 6.25vh;
 	background: #bbb;
-	border-right: 1px solid #fff;
+	border: 1px solid #fff;
+	border-right: none;
 	text-align: center;
 	font-size: .88889rem;
 	color: #fff;
+}
+.resource-task:first-child {
+	border-left: none;
 }
 .resource-task > a {
 	display: block;
