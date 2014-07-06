@@ -6,12 +6,3 @@
 		}
 	}
 }
-
-// Enumerate resource tops
-@mixin enumerate-resource-tops($num, $multiplier) {
-	@for $i from 1 through $num {
-		.resource-name:nth-child(#{($i * 2) - 1}) {
-			top: #{($i - 1) * $multiplier}vh;
-		}
-	}
-}

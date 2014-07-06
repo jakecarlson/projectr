@@ -15,7 +15,6 @@ body
 	left: 0;
 	width: 12.5vw;
 	height: 12.5vh;
-	border-right: 1px solid #bbb;
 
 	/* zoom slider */
 	#zoom-slider {
@@ -76,7 +75,6 @@ body
 	color: #777;
 	font-weight: normal;
 	border-left: 1px solid #bbb;
-	border-right: 1px solid #bbb;
 	background: #ddd;
 	padding-left: .5vw;
 	padding-right: .5vw;
@@ -100,6 +98,10 @@ body
 	background-image: url('/light.png'), url('/light.png'), url('/light.png');
 	background-position: 25% top, 50% top, 75% top;
 	background-repeat: repeat-y, repeat-y, repeat-y;
+
+	&:last-child {
+		border-right: none;
+	}
 
 	/* Gray out weekends */
 	&[data-dow="0"],
@@ -150,24 +152,20 @@ body
 
 /* resource-name */
 .resource-name {
-	position: absolute;
-	z-index: 4;
+	/*position: absolute;
+	z-index: 4;*/
 	display: table;
+	float: left;
+	clear: left;
 	width: 12.5vw;
 	height: 12.5vh;
 	margin-bottom: 0;
 	background: #fff;
-	border-right: 1px solid #bbb;
 	/*box-shadow: .125rem 0 .125rem rgba(0,0,0,.125);*/
 }
 
 /* Set resource name top offsets */
-@include enumerate-resource-tops(24, 12.5);
-
-/* Make manual adjustment to first row because it's off for some reason */
-.resource-name:nth-child(1) {
-	top: 1px;
-}
+//@include enumerate-resource-tops(24, 12.5);
 
 .resource-name > a {
 	display: table-cell;
