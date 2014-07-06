@@ -1,9 +1,44 @@
+@import 'mixins';
 @import 'packages/foundation5-sass/foundation';
 
 html,
 body
 {
 	height: 100%;
+}
+
+/* controls */
+#g-controls {
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 12.5vw;
+	height: 12.5vh;
+	border-right: 1px solid #bbb;
+
+	/* zoom slider */
+	#zoom-slider {
+
+		padding-left: 1vw;
+		padding-right: 1vw;
+		padding-top: 1.75vh;
+
+		span {
+			font-size: 1vw;
+			display: inline-block;
+			width: 4.5vw;
+		}
+
+		input {
+			width: 5.5vw;
+			cursor: pointer;
+			position: relative;
+			top: .5vh;
+		}
+
+	}
+
 }
 
 /* timeline */
@@ -20,17 +55,18 @@ body
 #g-dates {
 	position: absolute;
 	z-index: 1;
-	left: 12.5%;
+	left: 12.5vw;
 	top: 0;
-	width: 750.1vw;
 	margin: 0;
-	whites-space: nowrap;
+	white-space: nowrap;
+	font-size: 0;
 }
-.dates-month {
-	width: 750.1vw;
+.month {
+	display: inline-block;
+	font-size: 1rem;
 	list-style: none inside;
 }
-.dates-month-title {
+.month-title {
 	margin-top: 0;
 	margin-bottom: 0;
 	text-align: center;
@@ -40,26 +76,41 @@ body
 	color: #777;
 	font-weight: normal;
 	border-left: 1px solid #bbb;
+	border-right: 1px solid #bbb;
+	background: #ddd;
+	padding-left: .5vw;
+	padding-right: .5vw;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
-.dates-days {
+.days {
 	margin: 0;
 	list-style: none inside;
 	font-size: 0;
-	height: 43.75vh;
 	border-top: 1px solid #bbb;
 	border-left: 1px solid #bbb;
 }
-.dates-day {
+.day {
+
 	display: inline-block;
 	font-size: 1rem;
 	width: 25vw;
-	height: 56.25vh;
 	border-right: 1px solid #bbb;
 	background-image: url('/light.png'), url('/light.png'), url('/light.png');
 	background-position: 25% top, 50% top, 75% top;
 	background-repeat: repeat-y, repeat-y, repeat-y;
+
+	/* Gray out weekends */
+	&[data-dow="0"],
+	&[data-dow="6"]
+	{
+		background-color: #ddd;
+	}
+
 }
-.dates-day-title {
+
+.day-title {
 	display: block;
 	background: #fff;
 	text-align: center;
@@ -67,9 +118,15 @@ body
 	font-size: 3.125vh;
 	margin-top: 0;
 	margin-bottom: 0;
-	color: #bbb;
+	color: #999;
 	font-weight: normal;
 	border-bottom: 1px solid #bbb;
+	background: #ddd;
+	padding-left: .25vw;
+	padding-right: .25vw;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 /* resources */
@@ -85,6 +142,9 @@ body
 .resource-name,
 .resource-timeline
 {
+	border-bottom: 1px solid #bbb;
+}
+.resource-name:first-child {
 	border-top: 1px solid #bbb;
 }
 
@@ -97,23 +157,18 @@ body
 	height: 12.5vh;
 	margin-bottom: 0;
 	background: #fff;
+	border-right: 1px solid #bbb;
 	/*box-shadow: .125rem 0 .125rem rgba(0,0,0,.125);*/
 }
+
+/* Set resource name top offsets */
+@include enumerate-resource-tops(24, 12.5);
+
+/* Make manual adjustment to first row because it's off for some reason */
 .resource-name:nth-child(1) {
-	top: .1vh;
+	top: 1px;
 }
-.resource-name:nth-child(3) {
-	top: 12.5vh;
-}
-.resource-name:nth-child(5) {
-	top: 25vh;
-}
-.resource-name:nth-child(7) {
-	top: 37.5vh;
-}
-.resource-name:nth-child(9) {
-	top: 50vh;
-}
+
 .resource-name > a {
 	display: table-cell;
 	height: 100%;
@@ -131,7 +186,11 @@ body
 .resource-timeline:nth-child(2) {
 	border-top: none;
 }
+.resource-timeline:last-child {
+	margin-bottom: -1px;
+}
 .resource-tasks {
+	width: 100%;
 	height: 100%;
 	padding-top: 3.125vh;
 	margin-bottom: 0;
@@ -145,7 +204,7 @@ body
 	display: inline-block;
 	vertical-align: middle;
 	height: 6.25vh;
-	background: #ccc;
+	background: #bbb;
 	border-right: 1px solid #fff;
 	text-align: center;
 	font-size: .88889rem;
@@ -155,59 +214,13 @@ body
 	display: block;
 	color: #fff;
 	line-height: 6.25vh;
+	padding-left: .25vw;
+	padding-right: .25vw;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
-.resource-task.size-1 {
-	width: 6.25vw;
-}
-.resource-task.size-2 {
-	width: 12.5vw;
-}
-.resource-task.size-3 {
-	width: 18.75vw;
-}
-.resource-task.size-4 {
-	width: 25vw;
-}
-.resource-task.size-5 {
-	width: 31.25vw;
-}
-.resource-task.size-6 {
-	width: 37.5vw;
-}
-.resource-task.size-7 {
-	width: 43.75vw;
-}
-.resource-task.size-8 {
-	width: 50vw;
-}
-.resource-task.size-9 {
-	width: 56.25vw;
-}
-.resource-task.size-10 {
-	width: 62.5vw;
-}
-.resource-task.size-11 {
-	width: 68.75vw;
-}
-.resource-task.size-12 {
-	width: 75vw;
-}
-.resource-task.size-13 {
-	width: 81.25vw;
-}
-.resource-task.size-14 {
-	width: 87.5vw;
-}
-.resource-task.size-15 {
-	width: 93.75vw;
-}
-.resource-task.size-16 {
-	width: 100vw;
-}
 .resource-task:nth-child(1) {
 	background: #0e90d2;
 }
@@ -227,9 +240,9 @@ body
 	background: #fad232;
 }
 
+/* tooltip */
 .tooltip {
-	margin-top: -.5rem;
-	margin-left: .5rem;
+	margin-top: -1vh;
 	background-color: rgba(0,0,0,.75);
 	font-size: .88889rem;
 	font-weight: normal;
@@ -241,14 +254,129 @@ body
 /* projects */
 #g-projects {
 	float: left;
-	width: 20%;
+	width: 25vw;
 	height: 50%;
+	border-right: 1px solid #999;
+	padding: 1vw;
 }
 #g-filters,
-#g-tasks,
-#g-projects
+#g-tasks
 {
 	display: none;
+}
+
+/* zoom level 3 */
+[data-zoom="3"] {
+
+	#g-dates {
+		min-width: 2250.1vw;
+	}
+
+	.month {
+		/*min-width: 750.1vw;*/
+	}
+
+	.day {
+		width: 25vw;
+	}
+
+	.resource-timeline {
+		height: 12.5vh;
+		&[data-offset="1"] {
+			padding-left: 25vw;
+		}
+		&[data-offset="2"] {
+			padding-left: 50vw;
+		}
+	}
+
+	@include enumerate-task-widths(20, 6.25);
+
+}
+
+/* zoom level 2 */
+[data-zoom="2"] {
+
+	#g-dates {
+		min-width: 450.1vw;
+	}
+
+	.month {
+		/*width: 150.1vw;*/
+	}
+
+	.day {
+		width: 5vw;
+	}
+
+	.resource-timeline {
+		height: 12.5vh;
+		&[data-offset="1"] {
+			padding-left: 5vw;
+		}
+		&[data-offset="2"] {
+			padding-left: 10vw;
+		}
+	}
+
+	@include enumerate-task-widths(100, 1.25);
+
+}
+
+/* zoom level 3 */
+[data-zoom="1"] {
+
+	#g-controls {
+		height: 6.25vh;
+	}
+	#g-dates {
+		min-width: 90.1vw;
+	}
+	#g-resources {
+		top: 6.25vh;
+	}
+
+	.month {
+		/*min-width: 30vw;*/
+	}
+
+	.day {
+		width: 1vw;
+		text-indent: -100vw;
+		background-image: none;
+		border-right: 1px solid #ddd;
+	}
+	.day-title {
+		display: none;
+	}
+
+	.resource-name {
+		height: 6.25vh;
+	}
+
+	@include enumerate-resource-tops(24, 6.25);
+
+	.resource-timeline {
+		height: 6.25vh;
+		&[data-offset="1"] {
+			padding-left: 1vw;
+		}
+		&[data-offset="2"] {
+			padding-left: 2vw;
+		}
+	}
+	.resource-tasks {
+		padding-top: 1.5625vh;
+	}
+	.resource-task {
+		height: 3.125vh;
+	}
+	.resource-task > a {
+		line-height: 3.125vh;
+	}
+
+	@include enumerate-task-widths(500, .25);
+
 }
 
 /* {

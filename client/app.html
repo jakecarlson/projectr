@@ -11,18 +11,29 @@
 		<dl id="g-resources">
 			{{> resources }}
 		</dl>
+		<div id="g-controls">
+			<label id="zoom-slider">
+				<span>Zoom</span>
+				<input type="range" min="1" max="3" value="2" step="1" list="zoom">
+				<datalist id="zoom">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+				</datalist>
+			</label>
+		</div>
 	</div>
 
 	<div id="g-filters">
 		{{> filters}}
 	</div>
 
-	<div id="g-tasks">
-		{{> tasks}}
-	</div>
-
 	<div id="g-projects">
 		{{> projects}}
+	</div>
+
+	<div id="g-tasks">
+		{{> tasks}}
 	</div>
 
 	{{initFoundation}}
@@ -30,78 +41,35 @@
 </body>
 
 <template name="dates">
-	<li class="dates-month">
-		<h3 class="dates-month-title">June</h3>
-		<ul class="dates-days">
-			<li class="dates-day"><h4 class="dates-day-title">1</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">2</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">3</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">4</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">5</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">6</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">7</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">8</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">9</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">10</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">11</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">12</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">13</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">14</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">15</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">16</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">17</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">18</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">19</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">20</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">21</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">22</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">23</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">24</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">25</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">26</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">27</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">28</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">29</h4></li>
-			<li class="dates-day"><h4 class="dates-day-title">30</h4></li>
-		</ul>
-	</li>
+	{{#each months}}
+		<li class="month">
+			<h3 class="month-title">{{name}}</h3>
+			<ul class="days">
+				{{#each days}}
+					<li class="day" data-dow="{{dow}}"><h4 class="day-title">{{num}}</h4></li>
+				{{/each}}
+			</ul>
+		</li>
+	{{/each}}
 </template>
 
 <template name="resources">
 	<dt class="resource-name"><a href="#">Jake</a></dt>
 		<dd class="resource-timeline">
-			<ul class="resource-tasks">
-				<li class="resource-task size-4 tip-top" data-tooltip title="test1"><a href="#">test 1</a></li>
-				<li class="resource-task size-2 tip-top" data-tooltip title="test2"><a href="#">test 2</a></li>
-				<li class="resource-task size-1 tip-top" data-tooltip title="test3"><a href="#">test 3</a></li>
-				<li class="resource-task size-8 tip-top" data-tooltip title="test4"><a href="#">test 4</a></li>
+			<ul class="resource-tasks" data-capacity="1">
+				<li class="resource-task tip-top" data-size="4" data-tooltip title="test1"><a href="#">test 1</a></li>
+				<li class="resource-task tip-top" data-size="2" data-tooltip title="test2"><a href="#">test 2</a></li>
+				<li class="resource-task tip-top" data-size="1" data-tooltip title="test3"><a href="#">test 3</a></li>
+				<li class="resource-task tip-top" data-size="8" data-tooltip title="test4"><a href="#">test 4</a></li>
 			</ul>
 		</dd>
 	<dt class="resource-name"><a href="#">Jake</a></dt>
 		<dd class="resource-timeline">
-			<ul class="resource-tasks">
-				<li class="resource-task size-4 tip-top" data-tooltip title="test1"><a href="#">test 1</a></li>
-				<li class="resource-task size-2 tip-top" data-tooltip title="test2"><a href="#">test 2</a></li>
-				<li class="resource-task size-1 tip-top" data-tooltip title="test3"><a href="#">test 3</a></li>
-				<li class="resource-task size-8 tip-top" data-tooltip title="test4"><a href="#">test 4</a></li>
-			</ul>
-		</dd>
-	<dt class="resource-name"><a href="#">Jake</a></dt>
-		<dd class="resource-timeline">
-			<ul class="resource-tasks">
-				<li class="resource-task size-4 tip-top" data-tooltip title="test1"><a href="#">test 1</a></li>
-				<li class="resource-task size-2 tip-top" data-tooltip title="test2"><a href="#">test 2</a></li>
-				<li class="resource-task size-1 tip-top" data-tooltip title="test3"><a href="#">test 3</a></li>
-				<li class="resource-task size-8 tip-top" data-tooltip title="test4"><a href="#">test 4</a></li>
-			</ul>
-		</dd>
-	<dt class="resource-name"><a href="#">Jake</a></dt>
-		<dd class="resource-timeline">
-			<ul class="resource-tasks">
-				<li class="resource-task size-4 tip-top" data-tooltip title="test1"><a href="#">test 1</a></li>
-				<li class="resource-task size-2 tip-top" data-tooltip title="test1"><a href="#">test 2</a></li>
-				<li class="resource-task size-1 tip-top" data-tooltip title="test1"><a href="#">test 3</a></li>
-				<li class="resource-task size-8 tip-top" data-tooltip title="test1"><a href="#">test 4</a></li>
+			<ul class="resource-tasks" data-capacity=".5">
+				<li class="resource-task tip-top" data-size="4" data-tooltip title="test1"><a href="#">test 1</a></li>
+				<li class="resource-task tip-top" data-size="2" data-tooltip title="test2"><a href="#">test 2</a></li>
+				<li class="resource-task tip-top" data-size="1" data-tooltip title="test3"><a href="#">test 3</a></li>
+				<li class="resource-task tip-top" data-size="8" data-tooltip title="test4"><a href="#">test 4</a></li>
 			</ul>
 		</dd>
 </template>

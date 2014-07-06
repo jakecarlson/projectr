@@ -41,7 +41,6 @@ Deps.autorun(function () {
 	}
 });
 
-
 ////////// Helpers for in-place editing //////////
 
 // Returns an event map that handles the 'escape' and 'return' keys and
@@ -75,6 +74,46 @@ var okCancelEvents = function (selector, callbacks) {
 var activateInput = function (input) {
 	input.focus();
 	input.select();
+};
+
+////////// Dates //////////
+
+Template.dates.months = function () {
+
+	// Initialize months
+	var months = [];
+	var currentDate = moment();
+	var endDate = moment().add('days', 90);
+
+	// Loop through dates
+	while (currentDate <= endDate) {
+
+		// Set month and day
+		var month = currentDate.month();
+		var day = currentDate.date();
+
+		// If the month isn't already in the months array, add it now
+		if (!months[month]) {
+			months[month] = {
+				name: 	moment(currentDate).format('MMMM'),
+				days: 	[]
+			};
+		}
+
+		// Add the day to the months array
+		months[month].days[day] = {
+			num: 	day,
+			dow: 	currentDate.day()
+		};
+
+		// Increment date
+		currentDate.add('days', 1);
+
+	}
+
+	// Return months
+	return months;
+
 };
 
 ////////// Projects //////////
@@ -148,6 +187,26 @@ Template.tasks.any_project_selected = function () {
 };
 
 Template.tasks.rendered = function () {
+
+	// Attach event to zoom level input
+	$('#zoom-slider > input').on('change', function(e) {
+		$('body').attr('data-zoom', $(this).val());
+		updateTimelineHeight();
+		$('.resource-tasks').each(function(i, el) {
+			updateTaskDisplaySizes($(el));
+		});
+	});
+
+	// Add offset class to timeline
+	var offset = 0;
+	if (moment().day() == 0) {
+		offset = 1;
+	} else if (moment().day() == 6) {
+		offset = 2;
+	}
+	$('.resource-timeline').attr('data-offset', offset);
+
+	// Create the task sortables
 	$('.resource-tasks').sortable({
 		connectWith: 			'.resource-tasks',
 		containment: 			'#g-resources',
@@ -157,8 +216,86 @@ Template.tasks.rendered = function () {
 		forceHelperSize: 		true,
 		forcePlaceholderSize: 	true,
 		items: 					'.resource-task',
+		tolerance: 				'pointer',
+		update: 				handleTaskDrop
 	});
+
+	// Update the timeline height
+	updateTimelineHeight();
+
+	// Update all the task sizes
+	$('.resource-tasks').each(function(i, el) {
+		updateTaskDisplaySizes($(el));
+	});
+
+	$(window).on('resize', function() {
+		updateTimelineHeight();
+		$('.resource-tasks').each(function(i, el) {
+			updateTaskDisplaySizes($(el));
+		});
+	});
+
 };
+
+function updateTimelineHeight() {
+	var height = 0;
+	var dayTitle = $('.day-title:first');
+	if (dayTitle.css('display') != 'none') {
+		height = height + dayTitle.height();
+	}
+	$('.resource-name').each(function(i, el) {
+		height = height + $(el).height() + 1;
+	});
+	$('.day').height(height);
+}
+
+// Expand resource timeline to fill width of dates grid
+function updateResourceTimelineWidth(list) {
+	list.parent().outerWidth($('#g-dates').outerWidth());
+}
+
+function handleTaskDrop(e, ui) {
+	updateTaskDisplaySizes($(ui.sender));
+	updateTaskDisplaySizes($(ui.item).parent());
+}
+
+function updateTaskDisplaySizes(list) {
+
+	// Expand resource timeline to fill width of dates grid
+	updateResourceTimelineWidth(list);
+
+	// Get the resource's capacity
+	var capacityMultiplier = 1 / parseFloat(list.attr('data-capacity'));
+
+	// Figure out the starting position counter
+	var pos = $('.day:first').attr('data-dow');
+	if ((pos == 0) || (pos == 6)) {
+		pos = 0;
+	} else {
+		pos = pos - 1;
+	}
+	pos = pos * 4;
+
+	// Loop through tasks
+	list.children().each(function(i, el) {
+
+		// Set display size to base task size
+		var displaySize = Math.round(parseInt($(el).attr('data-size')) * capacityMultiplier);
+
+		// If the task overlaps a weekend, automatically add 8 size units to task
+		if (((pos + displaySize) % 28) >= 20) {
+			displaySize = displaySize + 8;
+		}
+
+		// Set the display size
+		$(el).attr('data-display-size', displaySize);
+
+		// Increment the position by the display size
+		pos = pos + displaySize;
+
+	});
+
+}
 
 Template.tasks.events(okCancelEvents(
 	'#new-task',
@@ -336,4 +473,5 @@ Router = new TasksRouter;
 
 Meteor.startup(function () {
 	Backbone.history.start({pushState: true});
+	$('body').attr('data-zoom', '2');
 });

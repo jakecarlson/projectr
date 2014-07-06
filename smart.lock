@@ -4,7 +4,8 @@
     "basePackages": {
       "router": {},
       "foundation5-sass": {},
-      "jquery-ui-sortable": {}
+      "jquery-ui-sortable": {},
+      "moment": {}
     },
     "packages": {
       "router": {
@@ -21,6 +22,11 @@
         "git": "https://github.com/rgm/meteor-jquery-ui-sortable.git",
         "tag": "v1.10.3",
         "commit": "4423bd4b28cd81df91400a6bcb2a3d82e72894dc"
+      },
+      "moment": {
+        "git": "https://github.com/acreeger/meteor-moment.git",
+        "tag": "v2.6.0",
+        "commit": "26156df681750fd6e6ed77043eef32b6653ebbdf"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",

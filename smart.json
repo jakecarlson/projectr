@@ -2,6 +2,7 @@
   "packages": {
     "router": {},
     "foundation5-sass": {},
-    "jquery-ui-sortable": {}
+    "jquery-ui-sortable": {},
+    "moment": {}
   }
 }
