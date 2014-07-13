@@ -11,26 +11,29 @@ body
 #g-controls {
 
 	position: absolute;
-	top: 0;
-	left: 0;
-	width: 12.5vw;
-	height: 12.5vh;
+	z-index: 2;
+	top: 1vh;
+	left: .5vw;
+	white-space: nowrap;
+	padding-top: .25vh;
+	padding-bottom: .25vh;
+	padding-left: .5vw;
+	padding-right: .5vw;
+	border: 1px solid #bbb;
+	background: #ddd;
 
 	/* zoom slider */
 	#zoom-slider {
 
-		padding-left: 1vw;
-		padding-right: 1vw;
-		padding-top: 1.75vh;
+		text-align: center;
 
 		span {
-			font-size: 1vw;
-			display: inline-block;
-			width: 4.5vw;
+			font-size: .88889rem;
+			margin-right: .5vw;
 		}
 
 		input {
-			width: 5.5vw;
+			width: 4vw;
 			cursor: pointer;
 			position: relative;
 			top: .5vh;
@@ -42,158 +45,126 @@ body
 
 /* timeline */
 #g-timeline {
+
 	position: relative;
+	z-index: 1;
 	width: 100vw;
 	height: 50vh;
 	border-bottom: 1px solid #999;
 	overflow: auto;
 	margin-bottom: 0;
-}
 
-/* dates */
-#g-dates {
-	position: absolute;
-	z-index: 1;
-	left: 12.5vw;
-	top: 0;
-	margin: 0;
-	white-space: nowrap;
-	font-size: 0;
-}
-.month {
-	display: inline-block;
-	font-size: 1rem;
-	list-style: none inside;
-}
-.month-title {
-	margin-top: 0;
-	margin-bottom: 0;
-	text-align: center;
-	height: 6.25vh;
-	line-height: 6.25vh;
-	font-size: 3.125vh;
-	color: #777;
-	font-weight: normal;
-	border-left: 1px solid #bbb;
-	background: #ddd;
-	padding-left: .5vw;
-	padding-right: .5vw;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-.days {
-	margin: 0;
-	list-style: none inside;
-	font-size: 0;
-	border-top: 1px solid #bbb;
-	border-left: 1px solid #bbb;
-}
-.day {
-
-	display: inline-block;
-	font-size: 1rem;
-	width: 25vw;
-	border-right: 1px solid #bbb;
-	background-image: url('/light.png'), url('/light.png'), url('/light.png');
-	background-position: 25% top, 50% top, 75% top;
-	background-repeat: repeat-y, repeat-y, repeat-y;
-
-	&:last-child {
-		border-right: none;
+	.loader {
+		display: block;
+		text-align: center;
+		line-height: 50vh;
+		font-size: 2rem;
+		color: #999;
 	}
 
-	/* Gray out weekends */
-	&[data-dow="0"],
-	&[data-dow="6"]
-	{
-		background-color: #ddd;
+	table {
+
+		//table-layout: fixed;
+
+		thead {
+			.months {
+				height: 6.25vh;
+				.month {
+					font-size: 3.125vh;
+					color: #777;
+					font-weight: normal;
+				}
+			}
+			.days {
+				height: 6.25vh;
+				.day {
+					font-size: 2.34375vh;
+					color: #999;
+					font-weight: normal;
+					abbr {
+						display: block;
+						height: 100%;
+						text-decoration: none;
+						border-bottom: none;
+						cursor: help;
+					}
+				}
+			}
+		}
+
+		tbody {
+			.resource {
+				height: 12.5vh;
+				.name {
+					width: 12.5vw;
+					min-width: 12.5vw;
+					max-width: 12.5vw;
+					padding-left: 0;
+					padding-right: 0;
+					a {
+						display: block;
+						line-height: 12.5vh;
+						padding-left: .5vw;
+						padding-right: .5vw;
+					}
+				}
+			}
+		}
+
+		th,
+		td
+		{
+
+
+			border: 1px solid #bbb;
+			border-spacing: 0;
+			border-collapse: collapse;
+			text-align: center;
+			vertical-align: middle;
+			padding: 0;
+			padding-left: .5vw;
+			padding-right: .5vw;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+
+			&[data-dow="0"],
+			&[data-dow="6"],
+			&[data-holiday],
+			&[data-vacation="vacation"]
+			{
+				background: #ddd;
+			}
+
+		}
+
 	}
 
+
 }
 
-.day-title {
-	display: block;
-	background: #fff;
-	text-align: center;
-	line-height: 6.25vh;
-	font-size: 3.125vh;
-	margin-top: 0;
-	margin-bottom: 0;
-	color: #999;
-	font-weight: normal;
-	border-bottom: 1px solid #bbb;
-	background: #ddd;
-	padding-left: .25vw;
-	padding-right: .25vw;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
 
 /* resources */
 #g-resources {
+
 	position: absolute;
-	z-index: 3;
-	left: 0;
+	left: 12.5vw;
 	top: 12.5vh;
-	width: 100%;
-	height: 37.5vh;
+	list-style: none inside;
+	margin-left: 0;
 	margin-bottom: 0;
-}
-.resource-name,
-.resource-timeline
-{
-	border-bottom: 1px solid #bbb;
-}
-.resource-name:first-child {
-	border-top: 1px solid #bbb;
+
+	.resource-timeline {
+		height: 12.5vh;
+		padding-top: 3.125vh;
+	}
+
 }
 
-/* resource-name */
-.resource-name {
-	/*position: absolute;
-	z-index: 4;*/
-	display: table;
-	float: left;
-	clear: left;
-	width: 12.5vw;
-	height: 12.5vh;
-	margin-bottom: 0;
-	background: #fff;
-	/*box-shadow: .125rem 0 .125rem rgba(0,0,0,.125);*/
-}
-
-/* Set resource name top offsets */
-//@include enumerate-resource-tops(24, 12.5);
-
-.resource-name > a {
-	display: table-cell;
-	height: 100%;
-	vertical-align: middle;
-	text-align: center;
-}
-.resource-timeline {
-	position: relative;
-	z-index: 2;
-	margin-left: 12.5vw;
-	height: 12.5vh;
-	margin-bottom: 0;
-	border-left: 1px solid #bbb;
-}
-.resource-timeline:nth-child(2) {
-	border-top: none;
-}
-.resource-timeline:last-child {
-	margin-bottom: -1px;
-}
 .resource-tasks {
-	width: 100%;
-	height: 100%;
-	padding-top: 3.125vh;
-	margin-bottom: 0;
 	font-size: 0;
 	margin-left: 0;
+	margin-bottom: 0;
 	white-space: nowrap;
 }
 
@@ -253,7 +224,7 @@ body
 	border-color: rgba(0,0,0,.75) transparent transparent transparent;
 }
 
-/* projects */
+/* projects
 #g-projects {
 	float: left;
 	width: 25vw;
@@ -266,29 +237,19 @@ body
 {
 	display: none;
 }
+*/
 
 /* zoom level 3 */
 [data-zoom="3"] {
 
-	#g-dates {
-		min-width: 2250.1vw;
-	}
-
-	.month {
-		/*min-width: 750.1vw;*/
-	}
-
-	.day {
-		width: 25vw;
-	}
-
-	.resource-timeline {
-		height: 12.5vh;
-		&[data-offset="1"] {
-			padding-left: 25vw;
-		}
-		&[data-offset="2"] {
-			padding-left: 50vw;
+	#g-timeline {
+		table {
+			//width: 2262.5vw;
+			.day {
+				width: 25vw;
+				min-width: 25vw;
+				max-width: 25vw;
+			}
 		}
 	}
 
@@ -299,76 +260,61 @@ body
 /* zoom level 2 */
 [data-zoom="2"] {
 
-	#g-dates {
-		min-width: 450.1vw;
-	}
-
-	.month {
-		/*width: 150.1vw;*/
-	}
-
-	.day {
-		width: 5vw;
-	}
-
-	.resource-timeline {
-		height: 12.5vh;
-		&[data-offset="1"] {
-			padding-left: 5vw;
+	#g-timeline {
+		table {
+			//width: 462.5vw;
+			.day {
+				width: 5vw;
+				min-width: 5vw;
+				max-width: 5vw;
+			}
 		}
-		&[data-offset="2"] {
-			padding-left: 10vw;
-		}
+
 	}
 
 	@include enumerate-task-widths(100, 1.25);
 
 }
 
-/* zoom level 3 */
+/* zoom level 1 */
 [data-zoom="1"] {
 
-	#g-controls {
-		height: 6.25vh;
+	#g-timeline {
+		table {
+			//width: 105.25vw;
+			thead .days {
+				display: none;
+				.day {
+					width: 1vw;
+					min-width: 1vw;
+					max-width: 1vw;
+					text-indent: -100vw;
+					background-image: none;
+				}
+			}
+			tbody {
+				.resource {
+					height: 6.25vh;
+					.name {
+						a {
+							line-height: 6.25vh;
+						}
+					}
+				}
+			}
+		}
 	}
-	#g-dates {
-		min-width: 90.1vw;
-	}
+
 	#g-resources {
 		top: 6.25vh;
-	}
-
-	.month {
-		/*min-width: 30vw;*/
-	}
-
-	.day {
-		width: 1vw;
-		text-indent: -100vw;
-		background-image: none;
-		border-right: 1px solid #ddd;
-	}
-	.day-title {
-		display: none;
-	}
-
-	.resource-name {
-		height: 6.25vh;
-	}
-
-	@include enumerate-resource-tops(24, 6.25);
-
-	.resource-timeline {
-		height: 6.25vh;
-		&[data-offset="1"] {
-			padding-left: 1vw;
-		}
-		&[data-offset="2"] {
-			padding-left: 2vw;
+		.resource-timeline {
+			height: 6.25vh;
+			padding-top: 1.5625vh;
 		}
 	}
+
 	.resource-tasks {
-		padding-top: 1.5625vh;
+
 	}
 	.resource-task {
 		height: 3.125vh;

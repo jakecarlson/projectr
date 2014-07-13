@@ -20,3 +20,11 @@ Meteor.publish('tasks', function (project_id) {
 	return Tasks.find({project_id: project_id});
 });
 
+// Resources -- {name: String,
+//					 vacations: Array}
+Resources = new Meteor.Collection('resources');
+
+// Publish all the resources
+Meteor.publish('resources', function () {
+	return Resources.find();
+});
