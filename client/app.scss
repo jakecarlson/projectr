@@ -65,6 +65,7 @@ body
 	table {
 
 		//table-layout: fixed;
+		margin-bottom: 0;
 
 		thead {
 			.months {
@@ -115,7 +116,6 @@ body
 		td
 		{
 
-
 			border: 1px solid #bbb;
 			border-spacing: 0;
 			border-collapse: collapse;
@@ -128,8 +128,8 @@ body
 			overflow: hidden;
 			text-overflow: ellipsis;
 
-			&[data-dow="0"],
-			&[data-dow="6"],
+			&[data-dow="1"],
+			&[data-dow="7"],
 			&[data-holiday],
 			&[data-vacation="vacation"]
 			{
@@ -153,6 +153,7 @@ body
 	list-style: none inside;
 	margin-left: 0;
 	margin-bottom: 0;
+	width: 100%;
 
 	.resource-timeline {
 		height: 12.5vh;
@@ -253,7 +254,7 @@ body
 		}
 	}
 
-	@include enumerate-task-widths(20, 6.25);
+	@include enumerate-task-widths(100, 6.25);
 
 }
 
@@ -272,7 +273,7 @@ body
 
 	}
 
-	@include enumerate-task-widths(100, 1.25);
+	@include enumerate-task-widths(500, 1.25);
 
 }
 
@@ -323,7 +324,7 @@ body
 		line-height: 3.125vh;
 	}
 
-	@include enumerate-task-widths(500, .25);
+	@include enumerate-task-widths(2500, .25);
 
 }
 

@@ -74,7 +74,7 @@ Meteor.methods({
 			// Add the day to the months array
 			months[i].days.push({
 				num: 		day,
-				dow: 		currentDate.day(),
+				dow: 		currentDate.day()+1,
 				holiday: 	holiday
 			});
 

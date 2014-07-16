@@ -81,7 +81,7 @@
 									data-dom="{{val.num}}"
 									data-dow="{{val.dow}}"
 									data-holiday="{{val.holiday}}"
-									data-vacation="{{#each ../../vacations}}{{#if equals year ../../year}}{{#if equals month ../../val.num}}{{#if equals day ../val.num}}vacation{{/if}}{{/if}}{{/if}}{{/each}}"
+									data-vacation="{{#each ../../vacations}}{{#if equals year ../../val.year}}{{#if equals month ../../val.num}}{{#if equals day ../val.num}}vacation{{/if}}{{/if}}{{/if}}{{/each}}"
 								>
 									&nbsp;
 								</td>
@@ -96,6 +96,18 @@
 			{{#each resources}}
 				<li class="resource-timeline">
 					<ul class="resource-tasks" data-capacity="1">
+						<li class="resource-task tip-top" data-size="4" data-tooltip title="test1"><a href="#">test 1</a></li>
+						<li class="resource-task tip-top" data-size="2" data-tooltip title="test2"><a href="#">test 2</a></li>
+						<li class="resource-task tip-top" data-size="1" data-tooltip title="test3"><a href="#">test 3</a></li>
+						<li class="resource-task tip-top" data-size="8" data-tooltip title="test4"><a href="#">test 4</a></li>
+						<li class="resource-task tip-top" data-size="4" data-tooltip title="test1"><a href="#">test 1</a></li>
+						<li class="resource-task tip-top" data-size="2" data-tooltip title="test2"><a href="#">test 2</a></li>
+						<li class="resource-task tip-top" data-size="1" data-tooltip title="test3"><a href="#">test 3</a></li>
+						<li class="resource-task tip-top" data-size="8" data-tooltip title="test4"><a href="#">test 4</a></li>
+						<li class="resource-task tip-top" data-size="4" data-tooltip title="test1"><a href="#">test 1</a></li>
+						<li class="resource-task tip-top" data-size="2" data-tooltip title="test2"><a href="#">test 2</a></li>
+						<li class="resource-task tip-top" data-size="1" data-tooltip title="test3"><a href="#">test 3</a></li>
+						<li class="resource-task tip-top" data-size="8" data-tooltip title="test4"><a href="#">test 4</a></li>
 						<li class="resource-task tip-top" data-size="4" data-tooltip title="test1"><a href="#">test 1</a></li>
 						<li class="resource-task tip-top" data-size="2" data-tooltip title="test2"><a href="#">test 2</a></li>
 						<li class="resource-task tip-top" data-size="1" data-tooltip title="test3"><a href="#">test 3</a></li>

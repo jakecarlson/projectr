@@ -112,7 +112,6 @@ Template.timeline.initSortables = function () {
 			updateTaskDisplaySizes($(el));
 		});
 
-
 	});
 }
 
@@ -124,6 +123,7 @@ Template.timeline.rendered = function () {
 		$('body').attr('data-zoom', zoom);
 		$('#g-timeline table thead .resources').attr('rowspan', (zoom == 1) ? 1 : 2);
 		$('.resource-tasks').each(function(i, el) {
+			//alert('change');
 			updateTaskDisplaySizes($(el));
 		});
 	});
@@ -148,28 +148,37 @@ function updateTaskDisplaySizes(list) {
 	// Get the resource's capacity
 	var capacityMultiplier = 1 / parseFloat(list.attr('data-capacity'));
 
-	// Figure out the starting position counter
-	var pos = 0;
-
 	// Loop through tasks
 	list.children().each(function(i, el) {
 
+		// jQueryify element
+		el = $(el);
+
 		// Set display size to base task size
-		var displaySize = Math.round(parseInt($(el).attr('data-size')) * capacityMultiplier);
+		var displaySize = Math.round(parseInt(el.attr('data-size')) * capacityMultiplier);
 
-		// If the task overlaps a weekend, automatically add 8 size units to task
-		if (((pos + displaySize) % 28) >= 20) {
-			displaySize = displaySize + 8;
+		// Set the initial display size
+		setTaskDisplaySize(el, displaySize);
+
+		// Expand size for any weekend, vacation, or holidays
+		var numPreviousOverlaps = 0;
+		var numOverlaps = getNumTaskCollisions(el);
+		while (numOverlaps > numPreviousOverlaps) {
+			displaySize = displaySize + ((numOverlaps - numPreviousOverlaps) * 4);
+			setTaskDisplaySize(el, displaySize);
+			numPreviousOverlaps = numOverlaps;
+			numOverlaps = getNumTaskCollisions(el);
 		}
-
-		// Set the display size
-		$(el).attr('data-display-size', displaySize);
-
-		// Increment the position by the display size
-		pos = pos + displaySize;
 
 	});
 
+}
+
+function getNumTaskCollisions(el) {
+	return el.collision('td[data-dow="1"], td[data-dow="7"], td[data-vacation], td[data-holiday]').length;
+}
+function setTaskDisplaySize(el, size) {
+	el.attr('data-display-size', size);
 }
 
 ////////// Projects //////////
