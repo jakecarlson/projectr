@@ -12,11 +12,11 @@ body
 
 	position: absolute;
 	z-index: 2;
-	top: 1vh;
+	top: 1.25vh;
 	left: .5vw;
 	white-space: nowrap;
-	padding-top: .25vh;
-	padding-bottom: .25vh;
+	padding-top: .5vh;
+	padding-bottom: .5vh;
 	padding-left: .5vw;
 	padding-right: .5vw;
 	border: 1px solid #bbb;
@@ -143,17 +143,16 @@ body
 
 }
 
-
 /* resources */
 #g-resources {
 
 	position: absolute;
 	left: 12.5vw;
 	top: 12.5vh;
+	right: 0;
 	list-style: none inside;
 	margin-left: 0;
 	margin-bottom: 0;
-	width: 100%;
 
 	.resource-timeline {
 		height: 12.5vh;
@@ -282,16 +281,9 @@ body
 
 	#g-timeline {
 		table {
-			//width: 105.25vw;
+			/*width: 102.5vw;*/
 			thead .days {
 				display: none;
-				.day {
-					width: 1vw;
-					min-width: 1vw;
-					max-width: 1vw;
-					text-indent: -100vw;
-					background-image: none;
-				}
 			}
 			tbody {
 				.resource {
@@ -301,6 +293,11 @@ body
 							line-height: 6.25vh;
 						}
 					}
+				}
+				.day {
+					width: 1vw;
+					min-width: 1vw;
+					max-width: 1vw;
 				}
 			}
 		}
